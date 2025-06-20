@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import md5 from 'crypto-js/md5';
+import * as md5 from 'crypto-js';
 
 /**
  * Model for a generic API page response.
@@ -55,7 +55,11 @@ export class MarvelService {
    */
   private buildAuthParams(): HttpParams {
     const timestamp = Date.now().toString();
-    const hash = md5(timestamp + environment.marvelPrivateKey + environment.marvelPublicKey).toString();
+    const hash = md5
+      .MD5(
+        timestamp + environment.marvelPrivateKey + environment.marvelPublicKey
+      )
+      .toString();
     let params = new HttpParams()
       .set('ts', timestamp)
       .set('apikey', environment.marvelPublicKey)
@@ -66,39 +70,57 @@ export class MarvelService {
   /**
    * Fetch a page of characters from the Marvel API.
    */
-  getCharacters(params: { page: number; limit: number; nameStartsWith?: string }): Observable<CharacterPage> {
+  getCharacters(params: {
+    page: number;
+    limit: number;
+    nameStartsWith?: string;
+  }): Observable<CharacterPage> {
     let httpParams = this.buildAuthParams()
       .set('limit', params.limit)
       .set('offset', params.page * params.limit);
     if (params.nameStartsWith) {
       httpParams = httpParams.set('nameStartsWith', params.nameStartsWith);
     }
-    return this.http.get<CharacterPage>(`${this.baseUrl}/characters`, { params: httpParams });
+    return this.http.get<CharacterPage>(`${this.baseUrl}/characters`, {
+      params: httpParams,
+    });
   }
 
   /**
    * Fetch a page of comics from the Marvel API.
    */
-  getComics(params: { page: number; limit: number; titleStartsWith?: string }): Observable<ComicPage> {
+  getComics(params: {
+    page: number;
+    limit: number;
+    titleStartsWith?: string;
+  }): Observable<ComicPage> {
     let httpParams = this.buildAuthParams()
       .set('limit', params.limit)
       .set('offset', params.page * params.limit);
     if (params.titleStartsWith) {
       httpParams = httpParams.set('titleStartsWith', params.titleStartsWith);
     }
-    return this.http.get<ComicPage>(`${this.baseUrl}/comics`, { params: httpParams });
+    return this.http.get<ComicPage>(`${this.baseUrl}/comics`, {
+      params: httpParams,
+    });
   }
 
   /**
    * Fetch a page of events from the Marvel API.
    */
-  getEvents(params: { page: number; limit: number; nameStartsWith?: string }): Observable<EventPage> {
+  getEvents(params: {
+    page: number;
+    limit: number;
+    nameStartsWith?: string;
+  }): Observable<EventPage> {
     let httpParams = this.buildAuthParams()
       .set('limit', params.limit)
       .set('offset', params.page * params.limit);
     if (params.nameStartsWith) {
       httpParams = httpParams.set('nameStartsWith', params.nameStartsWith);
     }
-    return this.http.get<EventPage>(`${this.baseUrl}/events`, { params: httpParams });
+    return this.http.get<EventPage>(`${this.baseUrl}/events`, {
+      params: httpParams,
+    });
   }
 }
