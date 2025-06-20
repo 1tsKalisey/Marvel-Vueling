@@ -1,0 +1,6 @@
+<input type="text" [formControl]="search" placeholder="Search events" />
+<div class="list">
+  <div class="card" *ngFor="let e of events">
+    {{ e.title }}
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<input type="text" [formControl]="search" placeholder="Search comics" />
+<div class="list">
+  <div class="card" *ngFor="let c of comics">
+    {{ c.title }}
+  </div>
+</div>
