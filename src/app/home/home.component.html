@@ -1,5 +1,16 @@
 <div class="carousel">
-  <mat-card class="character" *ngFor="let c of characters">
-    {{ c.name }}
-  </mat-card>
+  <div class="card character" *ngFor="let c of characters">
+    <img
+      class="card-img-top"
+      [src]="c.thumbnail.path + '.' + c.thumbnail.extension"
+      [alt]="c.name"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ c.name }}</h5>
+      <p class="card-text">
+        {{ c.description || 'No description available.' }}
+      </p>
+      <a href="#" class="btn btn-primary">Details</a>
+    </div>
+  </div>
 </div>
