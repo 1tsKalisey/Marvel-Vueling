@@ -1,6 +1,9 @@
-<input type="text" [formControl]="search" placeholder="Search events" />
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Search events</mat-label>
+  <input matInput [formControl]="search" placeholder="Search events" />
+</mat-form-field>
 <div class="list">
-  <div class="card" *ngFor="let e of events">
+  <mat-card class="card" *ngFor="let e of events">
     {{ e.title }}
-  </div>
+  </mat-card>
 </div>

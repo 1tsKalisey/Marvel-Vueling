@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { debounceTime, switchMap, startWith } from 'rxjs/operators';
 import { MarvelService, Event } from '../services/marvel.service';
 
 @Component({
   selector: 'app-events-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule
+  ],
   templateUrl: './events-list.component.html',
   styleUrl: './events-list.component.scss'
 })
