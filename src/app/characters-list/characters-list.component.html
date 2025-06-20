@@ -1,0 +1,6 @@
+<input type="text" [formControl]="search" placeholder="Search characters" />
+<div class="list">
+  <div class="card" *ngFor="let c of characters">
+    {{ c.name }}
+  </div>
+</div>
