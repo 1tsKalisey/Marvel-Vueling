@@ -1,6 +1,9 @@
-<input type="text" [formControl]="search" placeholder="Search characters" />
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Search characters</mat-label>
+  <input matInput [formControl]="search" placeholder="Search characters" />
+</mat-form-field>
 <div class="list">
-  <div class="card" *ngFor="let c of characters">
+  <mat-card class="card" *ngFor="let c of characters">
     {{ c.name }}
-  </div>
+  </mat-card>
 </div>
