@@ -3,7 +3,18 @@
   <input matInput [formControl]="search" placeholder="Search events" />
 </mat-form-field>
 <div class="list">
-  <mat-card class="card" *ngFor="let e of events">
-    {{ e.title }}
-  </mat-card>
+  <div class="card" *ngFor="let e of events">
+    <img
+      class="card-img-top"
+      [src]="e.thumbnail.path + '.' + e.thumbnail.extension"
+      [alt]="e.title"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ e.title }}</h5>
+      <p class="card-text">
+        {{ e.description || 'No description available.' }}
+      </p>
+      <a href="#" class="btn btn-primary">Details</a>
+    </div>
+  </div>
 </div>
