@@ -3,7 +3,18 @@
   <input matInput [formControl]="search" placeholder="Search comics" />
 </mat-form-field>
 <div class="list">
-  <mat-card class="card" *ngFor="let c of comics">
-    {{ c.title }}
-  </mat-card>
+  <div class="card" *ngFor="let c of comics">
+    <img
+      class="card-img-top"
+      [src]="c.thumbnail.path + '.' + c.thumbnail.extension"
+      [alt]="c.title"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ c.title }}</h5>
+      <p class="card-text">
+        {{ c.description || 'No description available.' }}
+      </p>
+      <a href="#" class="btn btn-primary">Details</a>
+    </div>
+  </div>
 </div>
